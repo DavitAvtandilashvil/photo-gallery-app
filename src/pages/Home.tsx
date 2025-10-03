@@ -1,3 +1,9 @@
+import Wrapper from "../components/Wrapper";
+
 export default function Home() {
-  return <div className="h-[2000px]">Home</div>;
+  return (
+    <div>
+      <Wrapper>Home</Wrapper>
+    </div>
+  );
 }
