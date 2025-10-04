@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# 📸 Unsplash Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React + TypeScript project that uses the **Unsplash API** to browse and search for images.  
+Includes infinite scroll, search history, and a modal for viewing photo details (views, likes, downloads).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ How to Start the Project
 
-## React Compiler
+### 1. Clone the repository
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/yourusername/unsplash-gallery.git
+cd unsplash-gallery
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Start the development server
+
+## Project Structure
+
+src/
+├── components/
+│ ├── PhotoModal.tsx # Modal showing full image + stats
+│ ├── Sidebar.tsx # Sidebar navigation
+│ ├── SkeletonCard.tsx # Single skeleton placeholder
+│ ├── SkeletonGrid.tsx # Grid of skeleton loaders
+│ ├── Stat.tsx # Displays stats (views, likes, downloads)
+│ └── Wrapper.tsx # Layout wrapper for consistent width
+│
+├── hooks/
+│ ├── useDebouncedValue.ts # Debounce hook for search input
+│ ├── usePhotoData.ts # Fetch detailed photo stats
+│ └── usePhotosFeedInfinite.ts # Infinite scroll logic (popular + search)
+│
+├── lib/
+│ └── unsplashClient.ts # Axios client configured for Unsplash API
+│
+├── pages/
+│ ├── History.tsx # Displays search history and results
+│ └── Home.tsx # Main page (search + infinite scroll)
+│
+├── services/
+│ └── imagesApi.ts # API calls for Unsplash (fetch, search, etc.)
+│
+├── store/
+│ └── useSearchHistory.ts # Zustand store for search history persistence
+│
+├── types/
+│ └── popularImage.ts # Type definitions for Unsplash photo data
+│
+├── utils/
+│ └── timeAgo.ts # Helper for converting timestamps to "x minutes ago"
+│
+├── App.tsx # Root component with layout setup
+├── AppLayout.tsx # Global layout wrapper
+├── index.tsx # React entry point
+├── main.tsx # Application mount and provider setup
+└── index.css # Global styles
