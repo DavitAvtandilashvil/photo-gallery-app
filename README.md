@@ -22,43 +22,45 @@ npm install
 
 ### 3. Start the development server
 
-## Project Structure
+## 🗂️ Project Structure
 
+```plaintext
 src/
 ├── components/
-│ ├── PhotoModal.tsx # Modal showing full image + stats
-│ ├── Sidebar.tsx # Sidebar navigation
-│ ├── SkeletonCard.tsx # Single skeleton placeholder
-│ ├── SkeletonGrid.tsx # Grid of skeleton loaders
-│ ├── Stat.tsx # Displays stats (views, likes, downloads)
-│ └── Wrapper.tsx # Layout wrapper for consistent width
+│   ├── PhotoModal.tsx        # Modal showing full image + stats
+│   ├── Sidebar.tsx           # Sidebar navigation
+│   ├── SkeletonCard.tsx      # Single skeleton placeholder
+│   ├── SkeletonGrid.tsx      # Grid of skeleton loaders
+│   ├── Stat.tsx              # Displays stats (views, likes, downloads)
+│   └── Wrapper.tsx           # Layout wrapper for consistent width
 │
 ├── hooks/
-│ ├── useDebouncedValue.ts # Debounce hook for search input
-│ ├── usePhotoData.ts # Fetch detailed photo stats
-│ └── usePhotosFeedInfinite.ts # Infinite scroll logic (popular + search)
+│   ├── useDebouncedValue.ts  # Debounce hook for search input
+│   ├── usePhotoData.ts       # Fetch detailed photo stats
+│   └── usePhotosFeedInfinite.ts # Infinite scroll logic (popular + search)
 │
 ├── lib/
-│ └── unsplashClient.ts # Axios client configured for Unsplash API
+│   └── unsplashClient.ts     # Axios client configured for Unsplash API
 │
 ├── pages/
-│ ├── History.tsx # Displays search history and results
-│ └── Home.tsx # Main page (search + infinite scroll)
+│   ├── History.tsx           # Displays search history and results
+│   └── Home.tsx              # Main page (search + infinite scroll)
 │
 ├── services/
-│ └── imagesApi.ts # API calls for Unsplash (fetch, search, etc.)
+│   └── imagesApi.ts          # API calls for Unsplash (fetch, search, etc.)
 │
 ├── store/
-│ └── useSearchHistory.ts # Zustand store for search history persistence
+│   └── useSearchHistory.ts   # Zustand store for search history persistence
 │
 ├── types/
-│ └── popularImage.ts # Type definitions for Unsplash photo data
+│   └── popularImage.ts       # Type definitions for Unsplash photo data
 │
 ├── utils/
-│ └── timeAgo.ts # Helper for converting timestamps to "x minutes ago"
+│   └── timeAgo.ts            # Helper for converting timestamps to "x minutes ago"
 │
-├── App.tsx # Root component with layout setup
-├── AppLayout.tsx # Global layout wrapper
-├── index.tsx # React entry point
-├── main.tsx # Application mount and provider setup
-└── index.css # Global styles
+├── App.tsx                   # Root component with layout setup
+├── AppLayout.tsx             # Global layout wrapper
+├── index.tsx                 # React entry point
+├── main.tsx                  # Application mount and provider setup
+└── index.css                 # Global styles
+```
