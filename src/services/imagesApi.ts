@@ -15,3 +15,13 @@ export async function searchPhotosPage(query: string, page = 1, perPage = 20) {
   }>("/search/photos", { params: { query, page, per_page: perPage } });
   return res.data;
 }
+
+export async function getPhotoDetail(id: string) {
+  const res = await unsplashClient.get(`/photos/${id}`);
+  return res.data;
+}
+
+export async function getPhotoStats(id: string) {
+  const res = await unsplashClient.get(`/photos/${id}/statistics`);
+  return res.data;
+}

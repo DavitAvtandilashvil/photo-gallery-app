@@ -4,10 +4,13 @@ import SkeletonGrid from "../components/SkeletonGrid";
 import { usePhotosFeedInfinite } from "../hooks/usePhotosFeedInvinite";
 import { useDebouncedValue } from "../hooks/useDebouncedValue";
 import { useSearchHistory } from "../store/useSearchHistory";
+import PhotoModal from "../components/PhotoModal";
 
 export default function Home() {
   const [query, setQuery] = useState("");
   const dq = useDebouncedValue(query, 600);
+
+  const [openId, setOpenId] = useState<string | null>(null);
 
   const addHistory = useSearchHistory((s) => s.add);
 
@@ -95,6 +98,7 @@ export default function Home() {
                   key={p.id}
                   src={p.urls.small}
                   alt={p.alt_description || "Unsplash"}
+                  onClick={() => setOpenId(p.id)}
                   className="w-full h-[200px] object-cover rounded-[10px] border
                              transition duration-300 ease-in-out
                              hover:scale-105 hover:shadow-lg hover:brightness-110 cursor-pointer"
@@ -113,6 +117,9 @@ export default function Home() {
           </div>
         </div>
       </Wrapper>
+      {openId && (
+        <PhotoModal photoId={openId} onClose={() => setOpenId(null)} />
+      )}
     </div>
   );
 }

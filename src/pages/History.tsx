@@ -5,10 +5,13 @@ import SkeletonGrid from "../components/SkeletonGrid";
 import { useSearchHistory } from "../store/useSearchHistory";
 import { usePhotosFeedInfinite } from "../hooks/usePhotosFeedInvinite";
 import { timeAgo } from "../utils/timeAgo";
+import PhotoModal from "../components/PhotoModal";
 
 export default function History() {
   const { items, clear, remove } = useSearchHistory();
   const [selected, setSelected] = useState<string>(items[0]?.query ?? "");
+
+  const [openId, setOpenId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!items.length) setSelected("");
@@ -135,6 +138,7 @@ export default function History() {
                           key={p.id}
                           src={p.urls.small}
                           alt={p.alt_description || "Unsplash"}
+                          onClick={() => setOpenId(p.id)}
                           className="w-full h-[200px] object-cover rounded-[10px] border
                                      transition duration-300 ease-in-out
                                      hover:scale-105 hover:shadow-lg hover:brightness-110 cursor-pointer"
@@ -151,6 +155,9 @@ export default function History() {
           </div>
         </div>
       </Wrapper>
+      {openId && (
+        <PhotoModal photoId={openId} onClose={() => setOpenId(null)} />
+      )}
     </div>
   );
 }
